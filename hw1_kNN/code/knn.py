@@ -54,6 +54,7 @@ class KNNClassifier:
         distances, np array (num_test_samples, num_train_samples) - array
            with distances between each test and each train sample
         """
+        
         num_train = self.train_X.shape[0]
         num_test = X.shape[0]
         dist_matrix = np.array([[0] * num_train for _ in range(num_test)])
@@ -76,6 +77,7 @@ class KNNClassifier:
         distances, np array (num_test_samples, num_train_samples) - array
            with distances between each test and each train sample
         """
+        
         num_train = self.train_X.shape[0]
         num_test = X.shape[0]
         dist_matrix = np.array([[0] * num_train for _ in range(num_test)])
@@ -98,10 +100,11 @@ class KNNClassifier:
            with distances between each test and each train sample
         """
 
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        matrix_train = np.array([self.train_X] * X.shape[0])
+        matrix_test = np.array([X] * self.train_X.shape[0])
+        matrix_test = np.transpose(matrix_test, (1, 0, 2))
+        dist_matrix = np.sum(np.abs(matrix_test - matrix_train), axis=2)
+        return dist_matrix
 
 
     def predict_labels_binary(self, distances):
