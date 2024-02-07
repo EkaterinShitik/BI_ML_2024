@@ -54,11 +54,14 @@ class KNNClassifier:
         distances, np array (num_test_samples, num_train_samples) - array
            with distances between each test and each train sample
         """
-        
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        num_train = self.train_X.shape[0]
+        num_test = X.shape[0]
+        dist_matrix = np.array([[0] * num_train for _ in range(num_test)])
+        for element_i in range(num_test):
+            for element_j in range(num_train):
+                distance = np.sum(np.abs(X[element_i] - self.train_X[element_j]))
+                dist_matrix[element_i][element_j] = distance
+        return dist_matrix
 
 
     def compute_distances_one_loop(self, X):
