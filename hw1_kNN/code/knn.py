@@ -57,7 +57,7 @@ class KNNClassifier:
         
         num_train = self.train_X.shape[0]
         num_test = X.shape[0]
-        dist_matrix = np.array([[0] * num_train for _ in range(num_test)])
+        dist_matrix = np.zeros((num_test, num_train))
         for element_i in range(num_test):
             for element_j in range(num_train):
                 distance = np.sum(np.abs(X[element_i] - self.train_X[element_j]))
@@ -80,7 +80,7 @@ class KNNClassifier:
         
         num_train = self.train_X.shape[0]
         num_test = X.shape[0]
-        dist_matrix = np.array([[0] * num_train for _ in range(num_test)])
+        dist_matrix = np.zeros((num_test, num_train))
         for element_i in range(num_test):
             distance_element = np.sum(np.abs(X[element_i] - self.train_X), axis=1)
             dist_matrix[element_i] = distance_element
@@ -101,6 +101,7 @@ class KNNClassifier:
         """
 
         matrix_train = np.array([self.train_X] * X.shape[0])
+        # Сначала повернуть вектор и умножить на матрицы из 1
         matrix_test = np.array([X] * self.train_X.shape[0])
         matrix_test = np.transpose(matrix_test, (1, 0, 2))
         dist_matrix = np.sum(np.abs(matrix_test - matrix_train), axis=2)
@@ -122,11 +123,8 @@ class KNNClassifier:
         n_train = distances.shape[1]
         n_test = distances.shape[0]
         prediction = np.zeros(n_test)
-
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        
+        
 
 
     def predict_labels_multiclass(self, distances):
