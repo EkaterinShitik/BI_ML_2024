@@ -16,11 +16,19 @@ def binary_classification_metrics(y_pred, y_true):
     # https://en.wikipedia.org/wiki/Precision_and_recall
     # https://en.wikipedia.org/wiki/F1_score
 
-    """
-    YOUR CODE IS HERE
-    """
-    pass
-
+    total_number = y_pred.shape[0]
+    true_all = (y_pred == y_true).sum()
+    true_pos = ((y_pred == 1) & (y_true == 1)).sum()
+    false_pos = ((y_pred == 1) & (y_true == 0)).sum()
+    false_neg = ((y_pred == 0) & (y_true == 1)).sum()
+    accuracy = true_all / total_number
+    precision = true_pos / (true_pos + false_pos)
+    recall = true_pos / (true_pos + false_neg)
+    f1_score = 2 * (precision * recall) / (precision + recall)
+    print(f"Accuracy is {accuracy}")
+    print(f"Precision is {precision}")
+    print(f"Recall is {recall}")
+    print(f"F1_score is {f1_score}")
 
 def multiclass_accuracy(y_pred, y_true):
     """
