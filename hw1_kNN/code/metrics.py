@@ -30,6 +30,7 @@ def binary_classification_metrics(y_pred, y_true):
     print(f"Recall is {recall}")
     print(f"F1_score is {f1_score}")
 
+
 def multiclass_accuracy(y_pred, y_true):
     """
     Computes metrics for multiclass classification
