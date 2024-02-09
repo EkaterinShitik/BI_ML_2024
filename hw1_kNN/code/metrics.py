@@ -18,13 +18,17 @@ def binary_classification_metrics(y_pred, y_true):
 
     total_number = y_pred.shape[0]
     true_all = (y_pred == y_true).sum()
-    true_pos = ((y_pred == 1) & (y_true == 1)).sum()
-    false_pos = ((y_pred == 1) & (y_true == 0)).sum()
-    false_neg = ((y_pred == 0) & (y_true == 1)).sum()
+    true_pos = float(((y_pred == 1) & (y_true == 1)).sum())
+    false_pos = float(((y_pred == 1) & (y_true == 0)).sum())
+    false_neg = float(((y_pred == 0) & (y_true == 1)).sum())
     accuracy = true_all / total_number
-    precision = true_pos / (true_pos + false_pos)
-    recall = true_pos / (true_pos + false_neg)
-    f1_score = 2 * (precision * recall) / (precision + recall)
+    precision_denom = (true_pos + false_pos)
+    precision = np.divide(true_pos, precision_denom, out=np.zeros_like(true_pos), where=precision_denom!=0)
+    recall_denom = (true_pos + false_neg)
+    recall = np.divide(true_pos, recall_denom, out=np.zeros_like(true_pos), where=recall_denom!=0)
+    f1_score_numer = 2 * (precision * recall)
+    f1_score_denom = (precision + recall)
+    f1_score = np.divide(f1_score_numer, f1_score_denom, out=np.zeros_like(f1_score_numer), where=f1_score_denom!=0)
     print(f"Accuracy is {accuracy}")
     print(f"Precision is {precision}")
     print(f"Recall is {recall}")
