@@ -99,9 +99,8 @@ class KNNClassifier:
         distances, np array (num_test_samples, num_train_samples) - array
            with distances between each test and each train sample
         """
-
+        
         matrix_train = np.array([self.train_X] * X.shape[0])
-        # Сначала повернуть вектор и умножить на матрицы из 1
         matrix_test = np.array([X] * self.train_X.shape[0])
         matrix_test = np.transpose(matrix_test, (1, 0, 2))
         dist_matrix = np.sum(np.abs(matrix_test - matrix_train), axis=2)
@@ -123,10 +122,11 @@ class KNNClassifier:
         n_train = distances.shape[1]
         n_test = distances.shape[0]
         prediction = np.zeros(n_test)
-        
-        
-
-
+        for index in range(n_test):
+            prediction[index] = self.train_y[distances[index].argmin()]
+        return prediction
+    
+    
     def predict_labels_multiclass(self, distances):
         """
         Returns model predictions for multi-class classification case
