@@ -123,7 +123,11 @@ class KNNClassifier:
         n_test = distances.shape[0]
         prediction = np.zeros(n_test)
         for index in range(n_test):
-            prediction[index] = self.train_y[distances[index].argmin()]
+            prelim_prediction = self.train_y[np.argsort(distances[index])[:self.k]].sum() / self.k
+        if prelim_prediction >= 0.5:    
+            prediction[index] = 1
+        else: 
+            prediction[index] = 0
         return prediction
     
     
