@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
-from IPython.display import display
 import seaborn as sns
 import matplotlib.pyplot as plt 
+
+
+from IPython.display import display
 
 
 def run_eda(df: pd.DataFrame) -> None:
