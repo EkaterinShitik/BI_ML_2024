@@ -61,10 +61,10 @@ def r_squared(y_pred, y_true):
     r2 - r-squared value
     """
 
-    """
-    YOUR CODE IS HERE
-    """
-    pass
+    r_squared_num = np.sum((y_true - y_pred)**2) 
+    r_squared_denom = np.sum((y_true - np.mean(y_pred))**2)
+    r_squared = 1 - r_squared_num / r_squared_denom
+    return r_squared
 
 
 def mse(y_pred, y_true):
@@ -77,10 +77,9 @@ def mse(y_pred, y_true):
     mse - mean squared error
     """
 
-    """
-    YOUR CODE IS HERE
-    """
-    pass
+    total_number = y_pred.shape[0]
+    mse = np.sum((y_true - y_pred)**2) / total_number
+    return mse
 
 
 def mae(y_pred, y_true):
@@ -93,8 +92,7 @@ def mae(y_pred, y_true):
     mae - mean absolut error
     """
 
-    """
-    YOUR CODE IS HERE
-    """
-    pass
+    total_number = y_pred.shape[0]
+    mae = np.sum(np.abs(y_true - y_pred)) / total_number
+    return mae
     
