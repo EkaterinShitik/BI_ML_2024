@@ -145,9 +145,11 @@ class KNNClassifier:
 
         n_train = distances.shape[0]
         n_test = distances.shape[0]
-        prediction = np.zeros(n_test, np.int)
-
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        prediction = np.zeros(n_test)
+        for index in range(n_test):
+            neighbours = self.train_y[np.argsort(distances[index])[:self.k]]
+            classes_clothes = [0] * 10
+            for neighbour in neighbours:
+                classes_clothes[neighbour] += 1
+            prediction[index] = np.argmax(classes_clothes)
+        return prediction
