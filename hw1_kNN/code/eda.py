@@ -26,6 +26,7 @@ def run_eda(df: pd.DataFrame) -> None:
     Return:
     - None
     """
+    
     print("Hi there! Let's analyze your DataFrame 💫")
     print('')
     number_rows, number_columns = df.shape
