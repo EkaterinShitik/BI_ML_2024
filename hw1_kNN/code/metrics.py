@@ -24,15 +24,15 @@ def binary_classification_metrics(y_pred, y_true):
     accuracy = true_all / total_number
     precision_denom = (true_pos + false_pos)
     precision = np.divide(true_pos, precision_denom, out=np.zeros_like(true_pos), where=precision_denom!=0)
+    precision = precision.tolist()
     recall_denom = (true_pos + false_neg)
     recall = np.divide(true_pos, recall_denom, out=np.zeros_like(true_pos), where=recall_denom!=0)
+    recall = recall.tolist()
     f1_score_numer = 2 * (precision * recall)
     f1_score_denom = (precision + recall)
     f1_score = np.divide(f1_score_numer, f1_score_denom, out=np.zeros_like(f1_score_numer), where=f1_score_denom!=0)
-    print(f"Accuracy is {accuracy}")
-    print(f"Precision is {precision}")
-    print(f"Recall is {recall}")
-    print(f"F1_score is {f1_score}")
+    f1_score = f1_score.tolist()
+    return precision, recall, f1_score, accuracy
 
 
 def multiclass_accuracy(y_pred, y_true):
@@ -45,10 +45,10 @@ def multiclass_accuracy(y_pred, y_true):
     accuracy - ratio of accurate predictions to total samples
     """
 
-    """
-    YOUR CODE IS HERE
-    """
-    pass
+    total_number = y_pred.shape[0]
+    true_all = (y_pred == y_true).sum()
+    accuracy = true_all / total_number
+    return accuracy 
 
 
 def r_squared(y_pred, y_true):
