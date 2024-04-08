@@ -1,2 +1,6 @@
 # BI_ML_2024
-The repository for homework in the ML course (BI)
+## HW7
+
+Work in Google Colab. 
+
+The origainal notebook is [here](https://colab.research.google.com/drive/162OHBg2hlt1q_A4fmIS6RepmvIF5YfLo?usp=sharing)
