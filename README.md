@@ -1,2 +1,3 @@
 # BI_ML_2024
-The repository for homework in the ML course (BI)
+## HW6
+**The notebook on Kaggle is [here](https://www.kaggle.com/code/ekaterinashitik/dota-baseline)**
